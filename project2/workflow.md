@@ -56,9 +56,13 @@ Let’s **map each of your 5 requirements** to the setup we discussed:
 ```mermaid
 graph LR
     laptop["Your Laptop"]
+    subgraph vpc1[vpc1]
     EC2_1["SSH to EC2-1 (Bastion, VPC-1, Public Subnet)"]
+    end
+    subgraph vpc2[vpc2]
     EC2_2["Access RDS (or EC2-2) in VPC-2 (via VPC Peering)"]
     rdf["Run pg_dump & pg_restore (10.x → 12.x)"]
+    end
     status["Send migration status to Slack via Webhook"]
 
     laptop --> EC2_1
